@@ -9,21 +9,28 @@
             </h2>
             <%= audio_tag radio.audio_url, :controls => true if radio.audio? %>
               <% if !radio.favorite_users.include?(current_user) %>
-                  <%= link_to favorites_index_path(radio_id: radio.id), method: :post do %>
+                  <%= link_to favorites_path(radio_id: radio.id), method: :post do %>
                    <i class="far fa-heart fa-2x like-btn" ></i>
               <% end %>
+                <%= radio.favorites.count %>
               <% else %>
-                  <%= link_to radios_path(radio_id: radio.id), method: :delete do %>
+                  <%= link_to favorite_path(radio.favorites.find_by(user_id: current_user.id)), method: :delete do %>
                    <i class="fas fa-heart fa-2x unlike-btn"></i>
               <% end %>
-              <%= radio.favorite_users.count %>
+                <%= radio.favorites.count %>  
               <% end %>
-            <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
-            <% if logged_in? %>
-            <%= link_to "E",edit_radio_path(radio) %>
             
-              <%= link_to "削除", radios_path(radio), method: :delete,data: {confirm: "本当にいいですか？"}%>
+            <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
+            
+            <% if radio.user == current_user %>
+              <%= link_to edit_radio_path(radio) do %>
+              <i class="far fa-edit fa-2x"></i>
+              <%  end %>
+              <%= link_to radio_path(radio), method: :delete ,data: {confirm: "本当にいいですか？"} do %>
+              <i class="far fa-trash-alt fa-2x"></i>
               <% end %>
+            <% end %>
+            
             <p class="topic-text">
               <div>タイトル</div>
               <%= radio.title %>

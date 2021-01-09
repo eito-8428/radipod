@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-  Favorite.find_by(params[:radio_id]).destroy
+  Favorite.find(params[:id]).destroy
   flash[:success] = "お気に入りを解除しました"
   redirect_to radios_path
   end

@@ -1,6 +1,7 @@
 class RadiosController < ApplicationController
   protect_from_forgery :except => [:destroy]
-
+  before_action :ensure_user, only: [:edit, :update, :destroy]
+  
   def index
     @radios = Radio.all.includes(:favorite_users)
   end
@@ -21,27 +22,34 @@ class RadiosController < ApplicationController
   end
   
   def edit
-   @radio = Radio.find(params[:id])
+
   end
 
   def update
-    @radio = Radio.find(params[:id])
+
     if @radio.update(radio_params)
       redirect_to radios_path
     else
-      render :new
+      render :edit
     end
   end
   
   def destroy
-      @radio = Radio.find(params[:id])
+      
       @radio.destroy
       redirect_to radios_path
   end
- 
+  
 
   private
   def radio_params
     params.require(:radio).permit(:audio,:title,:description)
   end
 end
+
+private
+  def ensure_user
+    @radios = current_user.radios
+    @radio = @radios.find_by(id: params[:id])
+    redirect_to radio_path unless @radio
+  end

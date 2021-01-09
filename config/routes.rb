@@ -14,11 +14,13 @@ Rails.application.routes.draw do
   
   resources :users
   resources :radios
+  resources :favorites
   
-  get    'favorites/index'
-  post   '/favorites/index', to: 'favorites#create'
-  delete '/favorites/index', to: 'favorites#destroy'
-  delete '/radios', to: 'favorites#destroy'
-  post "radios/:id/destroy" => "radios#destroy"
+  # get    'favorites/index'
+  # post   '/favorites/index', to: 'favorites#create'
+  # delete '/favorites/', to: 'favorites#destroy'
+  
+  
+  # delete "radios/:id/destroy" => "radios#destroy"
 
 end

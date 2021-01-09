@@ -9,14 +9,14 @@
             </h2>
             <%= audio_tag radio.audio_url, :controls => true if radio.audio? %>
               <% if !radio.favorite_users.include?(current_user) %>
-                  <%= link_to favorites_index_path(radio_id: radio.id), method: :post do %>
+                  <%= link_to favorites_path(radio_id: radio.id), method: :post do %>
                    <i class="far fa-heart like-btn" ></i>
-                  <% end %>
+                  <% end %><%= radio.favorites.count %>
               <% else %>
-                 <%= link_to favorites_index_path(radio_id: radio.id), method: :delete do %>
+                 <%= link_to favorite_path(radio.favorites.find_by(user_id: current_user.id)), method: :delete do %>
                    <i class="fas fa-heart unlike-btn"></i>
               <% end %>
-              <%= radio.favorite_users.count %>
+              <%= radio.favorites.count %>
               <% end %>
             <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
             <p class="topic-text">
