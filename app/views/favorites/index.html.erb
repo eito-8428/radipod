@@ -1,0 +1,30 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @favorite_radios.each do |radio| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= radio.user.name %>
+            </h2>
+            <%= audio_tag radio.audio_url, :controls => true if radio.audio? %>
+              <% if !radio.favorite_users.include?(current_user) %>
+                  <%= link_to favorites_index_path(radio_id: radio.id), method: :post do %>
+                   <i class="far fa-heart like-btn" ></i>
+                  <% end %>
+              <% else %>
+                 <%= link_to favorites_index_path(radio_id: radio.id), method: :delete do %>
+                   <i class="fas fa-heart unlike-btn"></i>
+              <% end %>
+              <%= radio.favorite_users.count %>
+              <% end %>
+            <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
+            <p class="topic-text">
+              <%= radio.description %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

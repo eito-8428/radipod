@@ -1,0 +1,39 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @radios.each do |radio| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= radio.user.name %>
+            </h2>
+            <%= audio_tag radio.audio_url, :controls => true if radio.audio? %>
+              <% if !radio.favorite_users.include?(current_user) %>
+                  <%= link_to favorites_index_path(radio_id: radio.id), method: :post do %>
+                   <i class="far fa-heart fa-2x like-btn" ></i>
+              <% end %>
+              <% else %>
+                  <%= link_to radios_path(radio_id: radio.id), method: :delete do %>
+                   <i class="fas fa-heart fa-2x unlike-btn"></i>
+              <% end %>
+              <%= radio.favorite_users.count %>
+              <% end %>
+            <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
+            <% if logged_in? %>
+            <%= link_to "E",edit_radio_path(radio) %>
+            
+              <%= link_to "削除", radios_path(radio), method: :delete,data: {confirm: "本当にいいですか？"}%>
+              <% end %>
+            <p class="topic-text">
+              <div>タイトル</div>
+              <%= radio.title %>
+              <div>説明</div>
+              <%= radio.description %>
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Radipod</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
+    <% end %>
+     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <%= link_to root_path do %>
+          <span><%= image_tag "images/icons/IMG_0020.PNG", class: "navbar-brand" %></span>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+            <li>
+              <%= link_to favorites_index_path do %>
+                <%= image_tag "images/icons/heart.png" %>
+              <% end %>
+            </li>
+            <li>
+              <div class="white">
+              <%= link_to new_radio_path do %>
+                <%= image_tag 'images/icons/ei-microphone.png'%>
+              <% end %>
+              <div>
+            </li>
+            <li>
+              <div class="white">
+              <%= link_to radios_path do %>
+                <%= image_tag 'images/icons/all.png'%>
+              <% end %>
+              <div>
+            </li>
+            <li>
+              <%= link_to logout_path, method: :delete do %>
+                <%= image_tag "images/icons/logout.png" %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_path do %>
+                <%= image_tag "images/icons/register.png" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to login_path do %>
+                <%= image_tag "images/icons/login.png" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <%= yield %>
+    <script>
+      $(function(){
+        $(".alert").fadeOut(4000);
+      });
+    </script>
+  </body>
+</html>
