@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  content: MyString
   user: one
   radio: one
-  comment: MyString
 
 two:
+  content: MyString
   user: two
   radio: two
-  comment: MyString

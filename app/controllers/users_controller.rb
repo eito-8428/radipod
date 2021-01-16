@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  def show
+  @user = User.find_by(id: params[:id])
+  @radios = current_user.radios
+  end
+  
+  
   def new
     @user = User.new
   end
@@ -15,6 +21,12 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
   end
+  
+  private
+  def radio_params
+    params.require(:radio).permit(:audio,:title,:description)
+  end
+
 end

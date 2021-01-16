@@ -15,9 +15,10 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true
   
+  mount_uploader :image, ImageUploader
   has_secure_password
   has_many :radios
   has_many :favorites
   has_many :favorite_radios, through: :favorites, source: 'radio'
-
+  has_many :comments, dependent: :destroy
 end

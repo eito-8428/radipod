@@ -70,3 +70,4 @@ gem 'bcrypt'
 gem "carrierwave"
 gem 'font-awesome-sass'
 gem 'font-awesome-rails'
+gem 'devise'

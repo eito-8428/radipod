@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/destroy'
   get 'radios/new'
   get 'sessions/new'
 
@@ -12,8 +10,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
+  
+  resources :radios do
+   resources :comments, only: [:create, :destroy]
+  end
   resources :users
-  resources :radios
   resources :favorites
   
   # get    'favorites/index'
@@ -21,6 +22,6 @@ Rails.application.routes.draw do
   # delete '/favorites/', to: 'favorites#destroy'
   
   
-  # delete "radios/:id/destroy" => "radios#destroy"
+  # delete "radios/:id" => "radios#destroy"
 
 end

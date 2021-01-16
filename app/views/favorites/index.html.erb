@@ -4,22 +4,47 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="topic-index-single">
+            　<div class ="profile-img">
+                  <%= link_to user_path(radio.user_id) do %>
+                   <% if radio.user.image? %>
+                     <%= image_tag radio.user.image.url,class:"icon-image" %>
+                   <% else %>
+                        <%= image_tag 'images/icons/no_icon.png',class:"icon-image" %>
+                   <% end %>
+                  <% end %>
+              </div>
             <h2 class="topic-author">
               <%= radio.user.name %>
             </h2>
+             <div class="radio-title">
+               <%= radio.title %>
+             </div>
             <%= audio_tag radio.audio_url, :controls => true if radio.audio? %>
               <% if !radio.favorite_users.include?(current_user) %>
                   <%= link_to favorites_path(radio_id: radio.id), method: :post do %>
-                   <i class="far fa-heart like-btn" ></i>
-                  <% end %><%= radio.favorites.count %>
+                   <i class="far fa-heart fa-2x like-btn" ></i>
+              <% end %>
+                <%= radio.favorites.count %>
               <% else %>
-                 <%= link_to favorite_path(radio.favorites.find_by(user_id: current_user.id)), method: :delete do %>
-                   <i class="fas fa-heart unlike-btn"></i>
+                  <%= link_to favorite_path(radio.favorites.find_by(user_id: current_user.id)), method: :delete do %>
+                   <i class="fas fa-heart fa-2x unlike-btn"></i>
               <% end %>
-              <%= radio.favorites.count %>
+                <%= radio.favorites.count %>  
               <% end %>
-            <%= image_tag 'images/icons/comment.png', class: 'topic-index-icon' %>
+              <%= link_to radio_path(radio) do %>
+             <i class="far fa-comment  fa-2x"></i>
+             <% end %>
+              <%= radio.comments.count %>
+            <% if radio.user == current_user %>
+              <%= link_to edit_radio_path(radio) do %>
+              <i class="far fa-edit fa-2x"></i>
+              <%  end %>
+              <%= link_to radio_path(radio), method: :delete ,data: {confirm: "本当にいいですか？"} do %>
+              <i class="far fa-trash-alt fa-2x"></i>
+              <% end %>
+            <% end %>
             <p class="topic-text">
+              <div>説明</div>
               <%= radio.description %>
             </p>
           </div>

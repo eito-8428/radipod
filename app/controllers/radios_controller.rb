@@ -1,6 +1,13 @@
 class RadiosController < ApplicationController
-  protect_from_forgery :except => [:destroy]
+  # protect_from_forgery :except => [:destroy]
   before_action :ensure_user, only: [:edit, :update, :destroy]
+
+  def show
+    @radio = Radio.find(params[:id])
+    @comments = @radio.comments
+    @comment = @radio.comments.build
+  end
+
   
   def index
     @radios = Radio.all.includes(:favorite_users)
@@ -35,7 +42,7 @@ class RadiosController < ApplicationController
   end
   
   def destroy
-      
+      @radio = Radio.find(params[:id])
       @radio.destroy
       redirect_to radios_path
   end
