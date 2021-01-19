@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: radipod_production
-  username: radipod
-  password: <%= ENV['RADIPOD_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

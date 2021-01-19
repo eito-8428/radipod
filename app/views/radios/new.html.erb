@@ -3,6 +3,12 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class="text-center">NEW RADIO</h1>
+        <% if logged_in? %>
+          <div id="app">
+            <button class="btn btn-danger" type="button" v-if="status=='ready'" @click="startRecording">録音を開始する</button>
+            <button class="btn btn-primary" type="button" v-if="status=='recording'" @click="stopRecording">録音を終了する</button>
+          </div>
+        <% end %>  
         <%= form_for @radio do |f| %>
           <div class="field">
             <%= f.label :Audiofile %>
@@ -12,12 +18,10 @@
             <%= f.label :title %>
             <%= f.text_area :title, class: 'form-control' %>
           </div>
-          
           <div class="form-group">
             <%= f.label :description %>
             <%= f.text_area :description, class: 'form-control' %>
           </div>
-          
 　        <% if logged_in? %>
            <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
            <% end %>
@@ -27,3 +31,55 @@
   </div>
 </div>
 
+<script>
+    new Vue({
+      el: '#app',
+      data: {
+        status: 'init',    
+        recorder: null,    
+        audioData: [],     
+        audioExtension: '' 
+    },
+        
+    methods: {
+      startRecording() {
+        this.status = 'recording';
+        this.audioData = [];
+        this.recorder.start();
+      },
+      stopRecording() {
+        this.recorder.stop();
+        this.status = 'ready';
+      },
+      getExtension(audioType) {
+        let extension = 'mp3';
+        const matches = audioType.match(/audio\/([^;]+)/);
+        if(matches) {
+        extension = matches[1];
+        }
+        return '.'+ extension;
+      }
+    },
+    
+    mounted() {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          this.recorder = new MediaRecorder(stream);
+          this.recorder.addEventListener('dataavailable', e => {
+            this.audioData.push(e.data);
+            this.audioExtension = this.getExtension(e.data.type);
+          });
+          this.recorder.addEventListener('stop', () => {
+            const audioBlob = new Blob(this.audioData);
+            const url = URL.createObjectURL(audioBlob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = Math.floor(Date.now() / 1000) + this.audioExtension;
+            document.body.appendChild(a);
+            a.click();
+          });
+          this.status = 'ready';
+        });
+      }
+    });
+</script>
