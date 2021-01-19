@@ -8,12 +8,24 @@
       <% else %>
         <%= image_tag 'images/icons/no_icon.png',class:"my-image" %>
       <% end %>
-        <div>
-          自己紹介
-        </div>
+        <div>自己紹介</div>
+        <div><%= @user.introduction %></div>
           <div>
-            <button type="button" class="btn btn-danger">フォロー</button>
+            <% if @user == current_user %>
+            <%= link_to edit_user_path(@user) , class: "btn btn-danger" do %>
+            <i class="far fa-edit "></i> プロフィールを編集
+            <% end %>
+            <% end %>
+            
+            <%= link_to favorites_path, class: "btn btn-danger" do  %>
+                <i class="fas fa-heart "></i> <%="#{@user.name}さんがいいねした投稿"%>
+            <%  end %>
           </div>
+             <% @user ||= current_user %>
+         <div>
+      　　　<%= render 'follow_form' %>
+      　　　<%= render 'stats' %>
+        </div>
   </div>
 </div>
 
@@ -25,26 +37,26 @@
           <h4 class="panel-title">
             <a data-toggle="collapse" href="#collapse1">
               <div class="radio-list">
-　　　　　　　あなたの投稿一覧
+            　　　 <%= @user.name %>さんの投稿一覧
 　　　　　    </div>
             </a>
           </h4>
         </div>
             <div id="collapse1" class="panel-collapse collapse">
               <div class="panel-body">
-            <% @radios.each do |radio| %>
+            <% @user.radios.each do |radio| %>
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                   <div class="topic-index-single">
                     　<div class ="profile-img">
-                         <% if radio.user.image? %>                                                              
+                         <% if radio.user.image? %>
                            <%= image_tag radio.user.image.url %>
                          <% else %>
                             <%= image_tag 'images/icons/no_icon.png' %>
                          <% end %>
                       </div>
                     <h2 class="topic-author">
-                      <%= radio.user.name %>
+                      <%= @user.name %>
                     </h2>
                      <div class="radio-title">
                        <%= radio.title %>

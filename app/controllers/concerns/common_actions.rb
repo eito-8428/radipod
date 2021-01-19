@@ -8,4 +8,11 @@ module CommonActions
   def logged_in?
     !current_user.nil?
   end
+  
+  def login_check
+    unless logged_in? 
+      flash[:danger] = "ログインしてください"
+      redirect_to login_url
+    end
+  end
 end

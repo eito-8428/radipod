@@ -25,11 +25,6 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
-              <%= link_to favorites_path do %>
-                <%= image_tag "images/icons/heart.png" %>
-              <% end %>
-            </li>
-            <li>
               <div class="white">
               <%= link_to new_radio_path do %>
                 <%= image_tag 'images/icons/ei-microphone.png'%>
@@ -39,6 +34,13 @@
             <li>
               <div class="white">
               <%= link_to radios_path do %>
+                <%= image_tag 'images/icons/head.png'%>
+              <% end %>
+              <div>
+            </li>
+            <li>
+               <div class="white">
+              <%= link_to  users_path do %>
                 <%= image_tag 'images/icons/all.png'%>
               <% end %>
               <div>
@@ -56,6 +58,20 @@
               <% end %>
             </li>
           <% else %>
+            <li>
+              <div class="white">
+              <%= link_to radios_path do %>
+                <%= image_tag 'images/icons/head.png'%>
+              <% end %>
+              <div>
+            </li>
+            <li>
+               <div class="white">
+              <%= link_to  users_path do %>
+                <%= image_tag 'images/icons/ei-microphone.png'%>
+              <% end %>
+              <div>
+            </li>
             <li>
               <%= link_to new_user_path do %>
                 <%= image_tag "images/icons/register.png" %>

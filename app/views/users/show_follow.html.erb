@@ -1,0 +1,24 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @user.followings.each do |user| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            　<div class ="profile-img">
+            　  <%= link_to user_path(user)do  %>
+                   <% if user.image? %>
+                     <%= image_tag user.image.url,class:"icon-image" %>
+                   <% else %>
+                        <%= image_tag 'images/icons/no_icon.png',class:"icon-image" %>
+                   <% end %>
+                   <% end %>
+              </div>
+                <h2><%= user.name %> </h2>
+                <div>自己紹介</div>
+                <div><%= user.introduction %></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

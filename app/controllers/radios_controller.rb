@@ -1,7 +1,6 @@
 class RadiosController < ApplicationController
-  # protect_from_forgery :except => [:destroy]
   before_action :ensure_user, only: [:edit, :update, :destroy]
-
+  before_action :login_check, only: [:new, :create,:edit, :update, :destroy]
   def show
     @radio = Radio.find(params[:id])
     @comments = @radio.comments
@@ -60,3 +59,16 @@ private
     @radio = @radios.find_by(id: params[:id])
     redirect_to radio_path unless @radio
   end
+
+private
+def redirect_root
+  redirect_to root_path unless user_signed_in?
+end
+
+private
+def login_check
+  unless user_signed_in?
+    flash[:alert] = "ログインしてください"
+    redirect_to root_path
+  end
+end

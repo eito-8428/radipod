@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-
+  before_action :login_check, only: [:create,:destroy]
+  
   def create
     radio = Radio.find(params[:radio_id])
     @comment = radio.comments.build(comment_params)

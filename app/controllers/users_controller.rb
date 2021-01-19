@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
+  before_action :login_check, only: [:show, :edit, :update, :destroy, :following, :followers]
+  
+  def index
+    @users = User.all
+  end
+  
   def show
-  @user = User.find_by(id: params[:id])
-  @radios = current_user.radios
+    @user = User.find_by(id: params[:id])
+    @radios = current_user.radios
+    @favorite_radios = @user.favorite_radios
   end
   
   
@@ -19,9 +26,37 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(@user), success: '編集が完了しました'
+  end
+  
+  def following
+      @user  = User.find(params[:id])
+      @users = @user.followings
+      render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
+  end
+  
+  def follows
+    @user  = User.find(params[:id])
+    @users = @user.follows
+    render 'show_follow'
+  end
+  
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :introduction)
   end
   
   private
@@ -30,3 +65,4 @@ class UsersController < ApplicationController
   end
 
 end
+

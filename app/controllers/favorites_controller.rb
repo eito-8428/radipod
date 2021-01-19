@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+   before_action :login_check, only: [:index, :create,:destroy]
+   
   def index
   @favorite_radios = current_user.favorite_radios
   end

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+
+ 
+
+  
   get 'radios/new'
   get 'sessions/new'
 
@@ -14,8 +19,14 @@ Rails.application.routes.draw do
   resources :radios do
    resources :comments, only: [:create, :destroy]
   end
-  resources :users
+  resources :users do
+    member do
+     get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :favorites
+
   
   # get    'favorites/index'
   # post   '/favorites/index', to: 'favorites#create'
