@@ -11,12 +11,13 @@
         <%= link_to 'Log in', login_path ,class: 'btn btn-block btn-white' %>
         <% end %>
       </div>
-      
     </div>
-    <div class="a">
+    <% if logged_in? %>
+      <div class="a">
         <div class="s-img"><%= image_tag 'images/icons/tree.png',class:"c" %></div>
         <div class="s-img"><%= image_tag 'images/icons/green.png',class:"c" %></div>
         <div class="s-img"><%= image_tag 'images/icons/studio.png',class:"c" %></div>
       </div>
+    <% end %>
   </div>
 </div>

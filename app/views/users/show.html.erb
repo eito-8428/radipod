@@ -1,25 +1,24 @@
 <div class="radio-show-wrapper">
   <div class="my-page">       　
-    <h2 class="topic-author">
-      <%= @user.name %>
-    </h2>
       <% if @user.image? %>                                                              
         <%= image_tag @user.image.url,class:"my-image" %>
       <% else %>
         <%= image_tag 'images/icons/no_icon.png',class:"my-image" %>
       <% end %>
-        <div>自己紹介</div>
-        <div><%= @user.introduction %></div>
+      <div class="profile-name">
+        <%= @user.name %>
+      </div>
+        <div class="profile">自己紹介</div>
+        <div class="profile"><%= @user.introduction %></div>
           <div>
             <% if @user == current_user %>
             <%= link_to edit_user_path(@user) , class: "btn btn-danger" do %>
             <i class="far fa-edit "></i> プロフィールを編集
             <% end %>
-            <% end %>
-            
             <%= link_to favorites_path, class: "btn btn-danger" do  %>
                 <i class="fas fa-heart "></i> <%="#{@user.name}さんがいいねした投稿"%>
-            <%  end %>
+            <% end %>
+            <% end %>
           </div>
              <% @user ||= current_user %>
          <div>

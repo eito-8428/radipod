@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>  
@@ -19,9 +21,11 @@
     <% end %>
      <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
       <div class="container">
+        <div class="home">
         <%= link_to root_path do %>
           <span><%= image_tag "images/icons/IMG_0020.PNG", class: "navbar-brand" %></span>
         <% end %>
+        <div>
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
@@ -29,58 +33,38 @@
               <%= link_to new_radio_path do %>
                 <%= image_tag 'images/icons/ei-microphone.png'%>
               <% end %>
-              <div>
-            </li>
+            　<div>
             <li>
-              <div class="white">
-              <%= link_to radios_path do %>
-                <%= image_tag 'images/icons/head.png'%>
-              <% end %>
-              <div>
-            </li>
-            <li>
-               <div class="white">
-              <%= link_to  users_path do %>
-                <%= image_tag 'images/icons/all.png'%>
-              <% end %>
-              <div>
-            </li>
-            <li>
-              <div class="my-p">
-              <%= link_to user_path(current_user.id) do %>
-               <i class="far fa-user-circle fa-4x"></i>
-              <% end %>
+              <div class="top-list">
+               <%= link_to "みんなの投稿",radios_path, class: "btn btn-white" %>
               </div>
             </li>
+            
             <li>
-              <%= link_to logout_path, method: :delete do %>
-                <%= image_tag "images/icons/logout.png" %>
-              <% end %>
+               <div class="top-list">
+              <%= link_to "マイページ",user_path(current_user.id),class: 'btn  btn-white'%>
+               </div>
+            </li>
+            <li>
+              <div class="top-list">
+               <%= link_to "ログアウト",logout_path, method: :delete,class: 'btn  btn-white' %>
+               </div>
             </li>
           <% else %>
             <li>
-              <div class="white">
-              <%= link_to radios_path do %>
-                <%= image_tag 'images/icons/head.png'%>
-              <% end %>
-              <div>
+              <div class="top-list">
+              <%= link_to "みんなの投稿",radios_path, class: "btn btn-white" %>
+              </div>
             </li>
             <li>
-               <div class="white">
-              <%= link_to  users_path do %>
-                <%= image_tag 'images/icons/ei-microphone.png'%>
-              <% end %>
-              <div>
+              <div class="top-list">
+              <%= link_to "ユーザー登録", new_user_path,class: "btn btn-white" %>
+              </div>
             </li>
             <li>
-              <%= link_to new_user_path do %>
-                <%= image_tag "images/icons/register.png" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to login_path do %>
-                <%= image_tag "images/icons/login.png" %>
-              <% end %>
+              <div class="top-list">
+              <%= link_to "ログイン",login_path,class: 'btn  btn-white'%>
+              </div>
             </li>
           <% end %>
         </ul>
