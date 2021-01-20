@@ -7,11 +7,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
 
-  # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
+
+  def size_range
+    1..10.megabytes
+  end
+end
+  # Override the directory where uploaded files will be stored.
+  # This is a sensible default for uploaders that are meant to be mounted:
 
   # process :resize_to_limit => [640, 480]
   # process :convert => 'jpg'
@@ -48,9 +57,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
   
   # def filename
   #   super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
@@ -71,7 +77,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  def size_range
-    1..10.megabytes
-  end
-end
+
