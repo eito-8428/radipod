@@ -5,12 +5,12 @@ require 'carrierwave/storage/fog'
 CarrierWave.configure do |config|
   config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: 'AKIARRS33554QNPSKKUU',
-      aws_secret_access_key: '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',
+      aws_access_key_id: 'AKIARRS335547IEU2KOG',
+      aws_secret_access_key: '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',
       region: 'ap-northeast-1'
     }
 
-    config.fog_directory  = 'radipod'
+    config.fog_directory  = 'railsradipod'
     config.cache_storage = :fog
    
   
