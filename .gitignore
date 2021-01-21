@@ -26,3 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env*
+.Procfile.swp
+Procfile
+20210109100037_hoge.rb
