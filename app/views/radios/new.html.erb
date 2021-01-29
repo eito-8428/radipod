@@ -52,7 +52,7 @@
         this.status = 'ready';
       },
       getExtension(audioType) {
-        let extension = 'mp3';
+        let extension = 'wav';
         const matches = audioType.match(/audio\/([^;]+)/);
         if(matches) {
         extension = matches[1];
@@ -83,3 +83,4 @@
       }
     });
 </script>
+
