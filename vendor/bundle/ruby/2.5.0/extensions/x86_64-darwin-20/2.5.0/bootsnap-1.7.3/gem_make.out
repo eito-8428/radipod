@@ -1,0 +1,15 @@
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.3/ext/bootsnap
+/Users/ikebuchieito/.rbenv/versions/2.5.8/bin/ruby -I /Users/ikebuchieito/.rbenv/versions/2.5.8/lib/ruby/site_ruby/2.5.0 -r ./siteconf20210403-27809-1ml4tuk.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20210403-27809-16w1s1b/bootsnap
