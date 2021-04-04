@@ -1,0 +1,16 @@
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+/Users/ikebuchieito/.rbenv/versions/2.5.8/bin/ruby -I /Users/ikebuchieito/.rbenv/versions/2.5.8/lib/ruby/site_ruby/2.5.0 -r ./siteconf20210404-88570-k79q1v.rb extconf.rb
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make DESTDIR\= clean
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make DESTDIR\=
+echo "Nada."
+Nada.
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make DESTDIR\= install
+echo "Nada."
+Nada.

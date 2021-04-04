@@ -1,0 +1,16 @@
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/racc-1.5.2/ext/racc/cparse
+/Users/ikebuchieito/.rbenv/versions/2.5.8/bin/ruby -I /Users/ikebuchieito/.rbenv/versions/2.5.8/lib/ruby/site_ruby/2.5.0 -r ./siteconf20210404-88570-14fdvjl.rb extconf.rb
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/ikebuchieito/radipod/vendor/bundle/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20210404-88570-1u8y50z/racc
